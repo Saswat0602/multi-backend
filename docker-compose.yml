@@ -23,7 +23,9 @@ services:
       - "8080:8080"
 
   node-fastify:
-    build: ./node-fastify
+    build:
+      context: .
+      dockerfile: node-fastify/Dockerfile
     restart: always
     env_file:
       - .env
@@ -34,7 +36,9 @@ services:
       - postgres
 
   golang:
-    build: ./golang-api
+    build:
+      context: .
+      dockerfile: golang-api/Dockerfile
     restart: always
     env_file:
       - .env
@@ -45,7 +49,9 @@ services:
       - postgres
 
   fastapi:
-    build: ./fastapi
+    build:
+      context: .
+      dockerfile: fastapi/Dockerfile
     restart: always
     env_file:
       - .env
