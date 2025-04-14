@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+  node-fastify:
+    build: ./node-fastify
+    restart: always
+    env_file:
+      - .env
+      - ./node-fastify/.env
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres
+
+  golang:
+    build: ./golang-api
+    restart: always
+    env_file:
+      - .env
+      - ./golang-api/.env
+    ports:
+      - "3002:3002"
+    depends_on:
+      - postgres
+
+  fastapi:
+    build: ./fastapi
+    restart: always
+    env_file:
+      - .env
+      - ./fastapi/.env
+    ports:
+      - "3003:3003"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:

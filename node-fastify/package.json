@@ -1,0 +1,20 @@
+{
+    "name": "node-fastify-api",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc",
+        "dev": "ts-node-dev src/index.ts"
+    },
+    "dependencies": {
+        "@prisma/client": "^6.6.0",
+        "fastify": "^4.0.0",
+        "pg": "^8.14.1"
+    },
+    "devDependencies": {
+        "@types/pg": "^8.11.12",
+        "prisma": "^6.6.0",
+        "ts-node-dev": "^2.0.0",
+        "typescript": "^5.0.0"
+    }
+}

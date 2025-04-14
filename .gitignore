@@ -1,0 +1,30 @@
+# Node (node-fastify)
+node-fastify/node_modules/
+node-fastify/dist/
+node-fastify/*.log
+node-fastify/package-lock.json
+# Golang (golang-api)
+golang-api/main
+golang-api/*.exe
+golang-api/*.log
+
+# FastAPI (Python)
+__pycache__/
+fastapi/__pycache__/
+fastapi/*.pyc
+fastapi/*.log
+
+# VSCode settings (optional)
+.vscode/
+
+# Environment & Docker
+.env
+*.env
+*.log
+*.sqlite
+postgres_data/
+postgres/*.sql
+
+# OS-specific
+.DS_Store
+Thumbs.db
